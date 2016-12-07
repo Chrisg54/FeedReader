@@ -1,7 +1,6 @@
 # Feed Reader
 ## Summary
 Project that utilizes Jasime for test driven development.
-on the map.
 
 ##Setup
 Download the repo and open index.html. The test output is at the bottom of the page.
