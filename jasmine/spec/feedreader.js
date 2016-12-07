@@ -58,6 +58,8 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
+        //Just check to see if the body has the menu-hidden class
         it('is hidden by default', function(){
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });
@@ -67,6 +69,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        // Run click on menu icon, check to make sure menu-hidden is removed, run click again and check to make sure menu-hidden has been added.
         it('displays when clicked and hides when clicked again', function(){
             $('.menu-icon-link').click();
             expect($("body").hasClass("menu-hidden")).not.toBe(true);
@@ -88,6 +91,8 @@ $(function() {
             });
         });
 
+        // loadFeed is an assync function so need to implement beforeEach and the done function first.
+        // Then check to see if there's at least one entry-link 
         it('have at least a single entry in the feed', function(done){
             expect($('.entry-link').length).not.toBe(0);
             done();
@@ -98,6 +103,8 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    // Load the feed the first time and save the url of the first item. Load the feed a second time
+    // and compare the url to the first one to check whether the new feed has loaded.
     describe('New Feed Selection', function() {
         var initurl = "";
         var feednum = 0;
