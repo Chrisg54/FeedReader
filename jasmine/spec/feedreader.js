@@ -27,10 +27,6 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
          it('url is defined and not empty', function() {
              allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
@@ -38,10 +34,6 @@ $(function() {
              });
          });
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
          it('name is defined and not empty', function() {
              allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
@@ -50,8 +42,6 @@ $(function() {
          });         
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -64,27 +54,16 @@ $(function() {
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
         // Run click on menu icon, check to make sure menu-hidden is removed, run click again and check to make sure menu-hidden has been added.
         it('displays when clicked and hides when clicked again', function(){
             $('.menu-icon-link').click();
-            expect($("body").hasClass("menu-hidden")).not.toBe(true);
+            expect($("body").hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').click();
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });          
     });
-    /* TODO: Write a new test suite named "Initial Entries" */
+
     describe('Initial entries', function() {
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
         beforeEach(function(done) {
             loadFeed(0,function(){
                 done();
@@ -93,16 +72,10 @@ $(function() {
 
         // loadFeed is an assync function so need to implement beforeEach and the done function first.
         // Then check to see if there's at least one entry-link 
-        it('have at least a single entry in the feed', function(done){
-            expect($('.entry-link').length).not.toBe(0);
-            done();
+        it('have at least a single entry in the feed', function(){
+            expect($('.feed .entry').length).not.toBe(0);
         });
     });
-    /* TODO: Write a new test suite named "New Feed Selection"
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
     // Load the feed the first time and save the url of the first item. Load the feed a second time
     // and compare the url to the first one to check whether the new feed has loaded.
     describe('New Feed Selection', function() {
@@ -115,18 +88,16 @@ $(function() {
             });
         });
 
-        it('initial feed is set', function(done){
+        it('initial feed is set', function(){
             initurl = $('.entry-link').attr("href");
             expect(initurl).not.toBe("");
-            done();
         });
 
 
-        it('new feed is loaded', function(done){
+        it('new feed is loaded', function(){
             var newurl = $('.entry-link').attr("href");
             expect(newurl).not.toBe("");
             expect(newurl != initurl).toBe(true);
-            done();
         });
     });
 
